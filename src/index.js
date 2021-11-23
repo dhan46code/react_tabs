@@ -1,17 +1,46 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect } from 'react';
+import ReactDom from 'react-dom';
+import { data } from './data';
+import { IoIosArrowDroprightCircle } from 'react-icons/io';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const App = () => {
+  const [jobList, setJobList] = useState(data);
+  const [value, setValue] = useState(0);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  const { title, date, req, desc } = jobList[value];
+  return (
+    <>
+      <main>
+        <div className='container'>
+          <div className='title'>
+            <h2>tech 2021</h2>
+          </div>
+          <div className='btn-group'>
+            {jobList.map((jobBtn, index) => {
+              return (
+                <button onClick={() => setValue(index)} key={index}>
+                  {jobBtn.req}
+                </button>
+              );
+            })}
+          </div>
+          <article>
+            <h3>{title}</h3>
+            <h4>Date : {date}</h4>
+            {desc.map((desc_role, index) => {
+              return (
+                <div className='desc'>
+                  <IoIosArrowDroprightCircle></IoIosArrowDroprightCircle>
+                  <p>{desc_role}</p>
+                </div>
+              );
+            })}
+          </article>
+        </div>
+      </main>
+    </>
+  );
+};
+
+ReactDom.render(<App />, document.getElementById('root'));
