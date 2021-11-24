@@ -19,7 +19,11 @@ const App = () => {
           <div className='btn-group'>
             {jobList.map((jobBtn, index) => {
               return (
-                <button onClick={() => setValue(index)} key={index}>
+                <button
+                  className={`btn ${index === value && 'active-tabs'}`}
+                  onClick={() => setValue(index)}
+                  key={index}
+                >
                   {jobBtn.req}
                 </button>
               );
@@ -31,7 +35,7 @@ const App = () => {
             {desc.map((desc_role, index) => {
               return (
                 <div className='desc'>
-                  <IoIosArrowDroprightCircle></IoIosArrowDroprightCircle>
+                  <IoIosArrowDroprightCircle className='desc-icon'></IoIosArrowDroprightCircle>
                   <p>{desc_role}</p>
                 </div>
               );
